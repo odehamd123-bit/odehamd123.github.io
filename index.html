@@ -154,7 +154,42 @@
             background-color: #0056b3;
         }
 
-        /* ==================== 4. تنسيق التذييل ==================== */
+        /* ==================== 4. تنسيق قسم المدونة ==================== */
+        .blog-grid {
+            /* استخدمنا نفس تنسيقات skills-grid */
+        }
+
+        .blog-card {
+            background-color: #f7fff7; 
+            border: 1px solid #c8e6c9;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        .blog-card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .blog-card h3 {
+            color: #388e3c; /* لون أخضر للمقالات */
+            margin-top: 0;
+            font-size: 1.25em;
+        }
+
+        .blog-link {
+            background-color: #4CAF50; /* لون أخضر */
+        }
+
+        .blog-link:hover {
+            background-color: #388e3c;
+        }
+
+        .disabled-link {
+            background-color: #ccc !important;
+            cursor: not-allowed;
+        }
+        
+        /* ==================== 5. تنسيق التذييل ==================== */
         footer {
             width: 100%;
             background-color: #222; 
@@ -186,6 +221,7 @@
     <nav>
         <ul>
             <li><a href="#home">الرئيسية</a></li>
+            <li><a href="#blog">المدونة</a></li>
             <li><a href="#skills">المهارات</a></li>
             <li><a href="#projects">المشاريع</a></li>
             <li><a href="#contact">تواصل</a></li>
@@ -204,6 +240,24 @@
                 <li>تطوير تطبيقات الويب الآمنة باستخدام Python (مثل Flask و PyWebIO).</li>
                 <li>توثيق رحلتي التعليمية في مجال التكنولوجيا.</li>
             </ul>
+        </div>
+
+        <div class="section" id="blog">
+            <h2>📝 المدونة والمقالات</h2>
+            <div class="blog-grid">
+                
+                <div class="blog-card">
+                    <h3>مقدمة في PyWebIO: تطبيقات الويب السريعة باستخدام Python</h3>
+                    <p>شرح مبسط لكيفية تحويل كود Python إلى واجهات ويب تفاعلية دون الحاجة لتعقيدات JavaScript.</p>
+                    <a href="articles/pywebio-intro.html" class="blog-link">اقرأ المقالة</a>
+                </div>
+                
+                <div class="blog-card">
+                    <h3>🛡️ شرح ثغرة XSS وكيفية الحماية منها</h3>
+                    <p>مقالة قادمة تركز على أمن الويب وكيفية تنظيف مدخلات المستخدم لمنع هجمات الحقن.</p>
+                    <a href="#" class="blog-link disabled-link">قريباً</a>
+                </div>
+            </div>
         </div>
         
         <div class="section" id="skills">
