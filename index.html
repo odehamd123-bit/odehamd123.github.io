@@ -84,7 +84,7 @@
 
 <body class="bg-gray-100 text-gray-800 transition" dir="rtl">
 
-<button id="theme-toggle" class="fixed top-4 right-4 z-[1001] bg-gray-900 text-white p-2 rounded-lg cursor-pointer transition hover:bg-gray-700">🌙 داكن</button>
+<button id="theme-toggle" class="fixed top-6 right-6 z-[1001] bg-blue-600 text-white p-3 rounded-full shadow-lg transition duration-300 hover:bg-blue-700">🌙</button>
 
 <nav class="fixed top-0 w-full bg-gray-900/95 shadow-lg z-50 backdrop-blur-md transition">
     <ul class="flex justify-center gap-4 py-4 text-white font-bold text-base">
@@ -204,7 +204,9 @@
         document.body.classList.toggle('text-gray-100');
         document.body.classList.toggle('bg-gray-100');
         document.body.classList.toggle('text-gray-800');
-        themeBtn.textContent = document.body.classList.contains('dark-mode') ? '☀️ فاتح' : '🌙 داكن';
+        
+        // التعديل لعرض الرمز فقط
+        themeBtn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
     });
 
     // Scroll Animation
@@ -224,7 +226,7 @@
     
     // Show/Hide button based on scroll position
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) { // يظهر الزر بعد التمرير 300 بكسل
+        if (window.scrollY > 300) { 
             scrollTopBtn.classList.remove('invisible', 'opacity-0');
             scrollTopBtn.classList.add('visible', 'opacity-100');
         } else {
