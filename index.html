@@ -26,7 +26,7 @@
     .parallax { background-attachment: fixed; background-size: cover; background-position: center; }
 
     /* Theme Toggle */
-    #theme-toggle { position: fixed; top: 1rem; left: 1rem; z-index: 1000; background: #1f2937; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; cursor: pointer; transition: background 0.3s; }
+    #theme-toggle { position: fixed; top: 1rem; right: 1rem; z-index: 1000; background: #1f2937; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; cursor: pointer; transition: background 0.3s; }
     #theme-toggle:hover { background: #374151; }
 
     /* 3D Card Hover Effect */
@@ -56,7 +56,7 @@
     </ul>
 </nav>
 
-<main class="pt-28 max-w-6xl mx-auto px-5">
+<main class="pt-32 max-w-6xl mx-auto px-5">
 
     <!-- HOME -->
     <section id="home" class="fade-in parallax shadow-xl rounded-3xl p-10 text-center" style="background-image: url('https://picsum.photos/id/1015/1600/900');">
@@ -172,8 +172,8 @@
     const appearOnScroll = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if(!entry.isIntersecting) return;
-            entry.classList.add('visible');
-            observer.unobserve(entry);
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
         });
     }, appearOptions);
     faders.forEach(fader => { appearOnScroll.observe(fader); });
