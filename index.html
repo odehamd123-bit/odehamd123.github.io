@@ -1,168 +1,183 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>مدونة عدي للأمن السيبراني | تطوير تطبيقات Python الآمنة</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>مدونة عدي للأمن السيبراني | تطوير تطبيقات Python الآمنة</title>
 
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+<!-- Tailwind CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
-    <style>
-        body { 
-            font-family: 'Cairo', sans-serif; 
-            opacity: 0;
-            animation: fadeIn 1.2s ease-out forwards;
-        }
+<style>
+    body { font-family: 'Cairo', sans-serif; transition: background-color 0.5s, color 0.5s; }
 
-        /* أنيميشن دخول عام */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
+    /* Navbar Hover Animation */
+    nav:hover { animation: slideNav 0.6s ease-in-out; }
+    @keyframes slideNav { 0%{transform:translateX(0);} 40%{transform:translateX(18px);} 100%{transform:translateX(0);} }
 
-        /* Navbar Slide عند المرور */
-        nav:hover {
-            animation: slideNav 0.6s ease-in-out;
-        }
-        @keyframes slideNav {
-            0%   { transform: translateX(0); }
-            40%  { transform: translateX(18px); }
-            100% { transform: translateX(0); }
-        }
+    /* FadeIn Entrance */
+    .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-        /* أنيميشن ظهور الأقسام */
-        .section-anim {
-            opacity: 0;
-            animation: sectionFade 1s ease-out forwards;
-        }
+    /* Parallax Layer */
+    .parallax { background-attachment: fixed; background-size: cover; background-position: center; }
 
-        @keyframes sectionFade {
-            from { opacity:0; transform: translateY(35px); }
-            to   { opacity:1; transform: translateY(0); }
-        }
-    </style>
+    /* Theme Toggle */
+    #theme-toggle { position: fixed; top: 1rem; left: 1rem; z-index: 1000; background: #1f2937; color: white; padding: 0.5rem 1rem; border-radius: 0.5rem; cursor: pointer; transition: background 0.3s; }
+    #theme-toggle:hover { background: #374151; }
+
+    /* 3D Card Hover Effect */
+    .card-3d { perspective: 1000px; }
+    .card-3d-inner { transition: transform 0.5s; transform-style: preserve-3d; }
+    .card-3d:hover .card-3d-inner { transform: rotateY(10deg) rotateX(5deg) scale(1.05); }
+
+    /* Drop shadow for icons */
+    .icon-animate { transition: transform 0.5s; }
+    .icon-animate:hover { transform: rotate(20deg) scale(1.2); }
+</style>
 </head>
 
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-100 text-gray-800 transition">
 
-    <!-- NAVBAR -->
-    <nav class="fixed top-0 w-full bg-gray-900/95 shadow-lg z-50 backdrop-blur-md transition">
-        <ul class="flex justify-center gap-6 py-4 text-white font-bold text-lg">
-            <li><a href="#home" class="hover:text-blue-400 transition">الرئيسية</a></li>
-            <li><a href="#blog" class="hover:text-blue-400 transition">المدونة</a></li>
-            <li><a href="#skills" class="hover:text-blue-400 transition">المهارات</a></li>
-            <li><a href="#projects" class="hover:text-blue-400 transition">المشاريع</a></li>
-            <li><a href="#contact" class="hover:text-blue-400 transition">تواصل</a></li>
-        </ul>
-    </nav>
+<!-- Theme Toggle Button -->
+<button id="theme-toggle">🌙 داكن</button>
 
-    <!-- MAIN CONTAINER -->
-    <main class="pt-28 max-w-5xl mx-auto px-5">
+<!-- NAVBAR -->
+<nav class="fixed top-0 w-full bg-gray-900/95 shadow-lg z-50 backdrop-blur-md transition">
+    <ul class="flex justify-center gap-6 py-4 text-white font-bold text-lg">
+        <li><a href="#home" class="hover:text-blue-400 transition icon-animate">الرئيسية</a></li>
+        <li><a href="#blog" class="hover:text-blue-400 transition icon-animate">المدونة</a></li>
+        <li><a href="#skills" class="hover:text-blue-400 transition icon-animate">المهارات</a></li>
+        <li><a href="#projects" class="hover:text-blue-400 transition icon-animate">المشاريع</a></li>
+        <li><a href="#contact" class="hover:text-blue-400 transition icon-animate">تواصل</a></li>
+    </ul>
+</nav>
 
-        <!-- HOME -->
-        <section id="home" class="section-anim bg-white shadow-xl rounded-3xl p-10 text-center">
-            <h1 class="text-4xl font-extrabold text-blue-600 mb-4 animate-pulse">مرحباً بك في موقع عدي 👋</h1>
-            <p class="text-gray-700 text-xl">
-                منصتي الشخصية لمشاركة المعرفة والخبرات في الأمن السيبراني وتطوير تطبيقات الويب.
-            </p>
-        </section>
+<main class="pt-28 max-w-6xl mx-auto px-5">
 
-        <!-- BLOG -->
-        <section id="blog" class="section-anim mt-16">
-            <h2 class="text-3xl font-bold text-gray-900 mb-8">📝 المدونة</h2>
+    <!-- HOME -->
+    <section id="home" class="fade-in parallax shadow-xl rounded-3xl p-10 text-center" style="background-image: url('https://picsum.photos/id/1015/1600/900');">
+        <h1 class="text-5xl font-extrabold text-white mb-4 animate-pulse drop-shadow-lg">مرحباً بك في موقع عدي 👋</h1>
+        <p class="text-gray-100 text-xl drop-shadow-md">منصتي لمشاركة الخبرات في الأمن السيبراني وتطوير الويب.</p>
+    </section>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Card 1 -->
-                <div class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition hover:-translate-y-2 section-anim">
+    <!-- BLOG -->
+    <section id="blog" class="fade-in mt-16 parallax" style="background-image: url('https://picsum.photos/id/1016/1600/900');">
+        <h2 class="text-3xl font-bold text-white mb-8 drop-shadow-lg">📝 المدونة</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="card-3d bg-white rounded-2xl p-6 shadow-2xl hover:shadow-4xl transition hover:-translate-y-3 fade-in">
+                <div class="card-3d-inner">
                     <h3 class="text-xl font-bold text-green-600 mb-3">مقدمة في PyWebIO</h3>
-                    <p class="text-gray-700">شرح بسيط لكيفية إنشاء واجهات ويب Python بدون JS.</p>
-                    <a href="articles/pywebio-intro.html"
-                       class="inline-block mt-5 bg-green-600 text-white px-5 py-2 rounded-lg hover:bg-green-700 transition">
-                        اقرأ المقالة
-                    </a>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="bg-white rounded-2xl p-6 shadow-lg opacity-60 cursor-not-allowed section-anim">
-                    <h3 class="text-xl font-bold text-green-600 mb-3">🛡️ شرح ثغرة XSS</h3>
-                    <p class="text-gray-700">مقالة قادمة قريباً.</p>
-                    <span class="inline-block mt-5 bg-gray-400 text-white px-5 py-2 rounded-lg">قريباً</span>
+                    <p class="text-gray-700">شرح كيفية إنشاء واجهات ويب Python بدون JS.</p>
+                    <a href="articles/pywebio-intro.html" class="inline-block mt-5 bg-green-600 text-white px-5 py-2 rounded-lg hover:bg-green-700 transition shadow-md hover:shadow-lg">اقرأ المقالة</a>
                 </div>
             </div>
-        </section>
+            <div class="card-3d bg-white rounded-2xl p-6 shadow-2xl opacity-60 cursor-not-allowed fade-in">
+                <div class="card-3d-inner">
+                    <h3 class="text-xl font-bold text-green-600 mb-3">🛡️ شرح ثغرة XSS</h3>
+                    <p class="text-gray-700">مقالة قادمة قريباً.</p>
+                    <span class="inline-block mt-5 bg-gray-400 text-white px-5 py-2 rounded-lg shadow-md">قريباً</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- SKILLS -->
-        <section id="skills" class="section-anim mt-20">
-            <h2 class="text-3xl font-bold mb-6">🛠️ المهارات التقنية</h2>
-
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-xl shadow hover:shadow-xl transition section-anim">
+    <!-- SKILLS -->
+    <section id="skills" class="fade-in mt-20 parallax" style="background-image: url('https://picsum.photos/id/1018/1600/900');">
+        <h2 class="text-3xl font-bold mb-6 text-white drop-shadow-lg">🛠️ المهارات التقنية</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="card-3d bg-white border-l-4 border-blue-500 p-6 rounded-xl shadow-lg hover:shadow-2xl transition fade-in">
+                <div class="card-3d-inner">
                     <h3 class="font-bold text-xl text-blue-600 mb-2">الأمن السيبراني</h3>
                     <p>اختبار الاختراق – تحليل الثغرات – أمن الويب</p>
                 </div>
-
-                <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-xl shadow hover:shadow-xl transition section-anim">
+            </div>
+            <div class="card-3d bg-white border-l-4 border-blue-500 p-6 rounded-xl shadow-lg hover:shadow-2xl transition fade-in">
+                <div class="card-3d-inner">
                     <h3 class="font-bold text-xl text-blue-600 mb-2">Python</h3>
                     <p>Backend – PyWebIO – Socket Programming</p>
                 </div>
-
-                <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-xl shadow hover:shadow-xl transition section-anim">
+            </div>
+            <div class="card-3d bg-white border-l-4 border-blue-500 p-6 rounded-xl shadow-lg hover:shadow-2xl transition fade-in">
+                <div class="card-3d-inner">
                     <h3 class="font-bold text-xl text-blue-600 mb-2">Frontend</h3>
                     <p>HTML — CSS — Responsive Design</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- PROJECTS -->
-        <section id="projects" class="section-anim mt-20">
-            <h2 class="text-3xl font-bold mb-6">💻 أبرز المشاريع</h2>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <div class="bg-white rounded-2xl p-6 shadow hover:shadow-2xl hover:-translate-y-2 transition section-anim">
+    <!-- PROJECTS -->
+    <section id="projects" class="fade-in mt-20 parallax" style="background-image: url('https://picsum.photos/id/1020/1600/900');">
+        <h2 class="text-3xl font-bold mb-6 text-white drop-shadow-lg">💻 أبرز المشاريع</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="card-3d bg-white rounded-2xl p-6 shadow-2xl hover:shadow-4xl hover:-translate-y-3 transition fade-in">
+                <div class="card-3d-inner">
                     <h3 class="text-xl font-bold text-red-600 mb-3">مشروع Tkinter</h3>
                     <p>واجهة رسومية مع تحكم عبر الشبكة.</p>
-                    <a href="#" class="inline-block mt-4 bg-blue-600 text-white px-5 py-2 rounded-lg">عرض الكود</a>
+                    <a href="#" class="inline-block mt-4 bg-blue-600 text-white px-5 py-2 rounded-lg shadow-md hover:shadow-lg">عرض الكود</a>
                 </div>
-
-                <div class="bg-white rounded-2xl p-6 shadow hover:shadow-2xl hover:-translate-y-2 transition section-anim">
+            </div>
+            <div class="card-3d bg-white rounded-2xl p-6 shadow-2xl hover:shadow-4xl hover:-translate-y-3 transition fade-in">
+                <div class="card-3d-inner">
                     <h3 class="text-xl font-bold text-red-600 mb-3">تطبيق ويب تفاعلي</h3>
                     <p>واجهة ويب لإرسال واستقبال الأوامر.</p>
-                    <a href="#" class="inline-block mt-4 bg-blue-600 text-white px-5 py-2 rounded-lg">عرض الكود</a>
+                    <a href="#" class="inline-block mt-4 bg-blue-600 text-white px-5 py-2 rounded-lg shadow-md hover:shadow-lg">عرض الكود</a>
                 </div>
-
-                <div class="bg-white rounded-2xl p-6 shadow hover:shadow-2xl hover:-translate-y-2 transition section-anim">
+            </div>
+            <div class="card-3d bg-white rounded-2xl p-6 shadow-2xl hover:shadow-4xl hover:-translate-y-3 transition fade-in">
+                <div class="card-3d-inner">
                     <h3 class="text-xl font-bold text-red-600 mb-3">هذا الموقع</h3>
                     <p>موقع ثابت منشور GitHub Pages.</p>
-                    <a href="#" class="inline-block mt-4 bg-blue-600 text-white px-5 py-2 rounded-lg">المستودع</a>
+                    <a href="#" class="inline-block mt-4 bg-blue-600 text-white px-5 py-2 rounded-lg shadow-md hover:shadow-lg">المستودع</a>
                 </div>
-
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- CONTACT -->
-        <section id="contact" class="section-anim mt-20 bg-white rounded-3xl shadow-xl p-10 text-center">
-            <h2 class="text-3xl font-bold mb-4">📞 تواصل معي</h2>
-            <p class="text-gray-700">
-                يسعدني استقبال استفساراتكم ومقترحات التعاون.
-            </p>
+    <!-- CONTACT -->
+    <section id="contact" class="fade-in mt-20 bg-white rounded-3xl shadow-xl p-10 text-center">
+        <h2 class="text-3xl font-bold mb-4">📞 تواصل معي</h2>
+        <p class="text-gray-700">يسعدني استقبال استفساراتكم ومقترحات التعاون.</p>
+        <p class="mt-6 text-lg">
+            📧 <a href="mailto:odehamd123@gmail.com" class="text-blue-600 hover:underline">odehamd123@gmail.com</a><br>
+            🔗 <a href="#" class="text-blue-600 hover:underline">GitHub</a>
+        </p>
+    </section>
 
-            <p class="mt-6 text-lg">
-                📧 <a href="mailto:odehamd123@gmail.com" class="text-blue-600 hover:underline">odehamd123@gmail.com</a><br>
-                🔗 <a href="#" class="text-blue-600 hover:underline">GitHub</a>
-            </p>
-        </section>
+</main>
 
-    </main>
+<!-- FOOTER -->
+<footer class="mt-20 bg-gray-900 text-gray-300 text-center py-5 fade-in">
+    <p>&copy; 2025 عدي حامد — جميع الحقوق محفوظة.</p>
+</footer>
 
-    <!-- FOOTER -->
-    <footer class="mt-20 bg-gray-900 text-gray-300 text-center py-5 section-anim">
-        <p>&copy; 2025 عدي حامد — جميع الحقوق محفوظة.</p>
-    </footer>
+<script>
+    // Theme Toggle
+    const themeBtn = document.getElementById('theme-toggle');
+    themeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('bg-gray-900');
+        document.body.classList.toggle('text-gray-100');
+        document.body.classList.toggle('bg-gray-100');
+        document.body.classList.toggle('text-gray-800');
+        themeBtn.textContent = document.body.classList.contains('bg-gray-900') ? '☀️ فاتح' : '🌙 داكن';
+    });
+
+    // Scroll Animation
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -100px 0px" };
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if(!entry.isIntersecting) return;
+            entry.classList.add('visible');
+            observer.unobserve(entry);
+        });
+    }, appearOptions);
+    faders.forEach(fader => { appearOnScroll.observe(fader); });
+</script>
 
 </body>
 </html>
