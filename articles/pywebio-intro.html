@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مقدمة في PyWebIO: بناء تطبيقات الويب السريعة باستخدام Python</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.7; margin: 40px; background-color: #f9f9f9; color: #333; }
+        .article-container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1 { color: #007bff; border-bottom: 2px solid #ddd; padding-bottom: 10px; }
+        code { background-color: #eee; padding: 2px 5px; border-radius: 3px; }
+        pre { background-color: #333; color: white; padding: 15px; border-radius: 5px; overflow-x: auto; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class="article-container">
+        <p><a href="../index.html">← العودة للصفحة الرئيسية</a></p>
+        <h1>مقدمة في PyWebIO: بناء تطبيقات الويب السريعة باستخدام Python</h1>
+        <p>كمطور يعتمد على Python، أدركت أهمية وجود مكتبات تسمح بتحويل الأكواد البرمجية بسرعة إلى تطبيقات ويب تفاعلية. وهنا يأتي دور **PyWebIO**.</p>
+        
+        <h2>ما هي PyWebIO؟</h2>
+        <p>هي مكتبة تسمح لك بكتابة واجهة المستخدم لتطبيقات الويب بنفس الطريقة التي تكتب بها كود Python تقليدياً (في سطر الأوامر أو Tkinter). لا تحتاج لمعرفة HTML أو JavaScript معقدة لبدء العمل.</p>
+        
+        <h2>مثال بسيط: تطبيق الترحيب</h2>
+        <p>لنرى كيف يمكنك عرض رسالة ترحيب بسيطة:</p>
+        <pre><code>
+from pywebio.output import put_text, put_markdown
+
+def main():
+    put_markdown('# أهلاً بك في PyWebIO!')
+    put_text('تم إنشاء هذه الرسالة باستخدام كود Python بسيط.')
+
+if __name__ == '__main__':
+    main()
+        </code></pre>
+        <p>يتم نشر هذا الكود باستخدام وظيفة <code>start_server</code> أو دمجه في تطبيقات Flask أو Django.</p>
+        
+        <h2>لماذا نستخدمها في الأمن السيبراني؟</h2>
+        <p>يمكن استخدام PyWebIO لبناء أدوات أمنية خفيفة الوزن بواجهة ويب، مثل: واجهة لفحص بسيط للمنافذ، أو أداة تحليل بيانات الإدخال (Input Sanitization) التي تساعد في منع ثغرات الحقن (Injection vulnerabilities).</p>
+        
+        <p>تابعونا في المقالة القادمة لنتعلم كيفية دمج PyWebIO مع تطبيق Flask آمن.</p>
+    </div>
+</body>
+</html>
